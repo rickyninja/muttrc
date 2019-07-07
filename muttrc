@@ -1,0 +1,12 @@
+source "gpg -d ~/.mutt/credentials.gpg |"
+source ~/.mutt/account-hooks
+source ~/.mutt/accounts/rickyninja # default account
+source ~/.mutt/aliases
+source ~/.mutt/autoview
+source ~/.mutt/binds
+source ~/.mutt/colors/original
+source ~/.mutt/headers
+source ~/.mutt/macros
+source ~/.mutt/mailboxes
+source ~/.mutt/mailing-lists
+source ~/.mutt/variables

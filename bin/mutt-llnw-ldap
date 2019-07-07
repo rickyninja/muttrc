@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+eval {
+    require Net::LDAP;
+} or do {
+    die "You need to install Net::LDAP\n";
+};
+
+my @attrs = qw(sn cn uid);
+my $base = 'ou=People, dc=llnw, dc=com';
+my $server = 'ldap.llnw.com';
+my $port = 389;
+#my $server = 'localhost';
+#my $port = 3389;
+
+die "Usage: $0  [searchToken]\n" unless @ARGV;
+
+# ssh -nNTL 2222:ldap.llnw.com:389 work &
+#start_proxy();
+
+my $ldap = Net::LDAP->new(
+    $server,
+    port => $port,
+    timeout => 5,
+) or die "Could not contact LDAP server $server:$port";
+$ldap->bind or die 'Could not bind';
+
+my @results = ();
+
+for my $search (@ARGV) {
+    my $query = join '', map { "($_=*$search*)" } @attrs;
+    my $mesg = $ldap->search(base => $base, filter => "(|$query)") or die 'Failed search';
+    foreach my $entry ($mesg->entries) {
+        my $uid = $entry->get('uid');
+        next unless (defined $uid);
+        my $fname = $entry->get('cn');
+        #my $lname = $entry->get('sn');
+        my $mail = $entry->get('mail');
+        push @results, "<$$mail[0]>\t$$fname[0]\n";
+    }
+}
+
+$ldap->unbind;
+
+print 'LDAP query: found ', scalar @results, "\n", @results;
+exit 1 unless @results;
+
+sub start_proxy {
+    my $fifo = '/home/jeremys/ldap-proxy';
+    my $pid = fork;
+    if (! defined($pid)) {
+        die "Failed to fork";
+    } elsif ($pid > 0) {
+        my $nc = qq(nc -l 2222 <$fifo | nc -X 5 -x localhost:4443 $server $port > $fifo);
+        exec($nc);
+    }
+    sleep 1; # wait for netcat service to start
+}
+
+__END__
+
+=head1 Author
+
+    Jeremy Singletary

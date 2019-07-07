@@ -1,0 +1,9 @@
+auto_view application/postscript
+auto_view application/x-bunzip2
+auto_view application/x-gunzip
+auto_view application/x-tar-bz2
+auto_view application/x-tar-gz
+auto_view image/gif
+auto_view text/enriched
+auto_view text/html
+auto_view text/x-vcard

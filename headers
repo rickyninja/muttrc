@@ -1,0 +1,11 @@
+ignore * # ignore all headers
+unignore from:
+unignore subject
+unignore to
+unignore cc
+unignore mail-followup-to
+unignore date
+unignore x-mailer
+unignore x-url
+
+hdr_order date subject from to reply-to cc

@@ -1,0 +1,4 @@
+subscribe freebsd-announce
+subscribe rancid-discuss
+folder-hook freebsd-announce set sort=date-received
+folder-hook mutt-announce set sort=date-received

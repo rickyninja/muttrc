@@ -1,0 +1,41 @@
+set abort_nosubject=no
+set abort_unmodified=ask-no
+set askcc
+set attribution="On %d, %f said:"
+set autoedit
+set certificate_file = ~/.mutt/certificates
+set copy=yes
+set date_format="%D"
+set delete=yes
+set dsn_notify="failure,delay"
+set dsn_return="full"
+set editor="vim"
+set fcc_attach
+set folder_format="%N %F %2l %-8.8u %-8.8g %8s %d %f"
+set followup_to
+set forward_format="Fw: %s"
+set header_cache= ~/.mutt/cache/headers
+set include=yes
+set indent_string="> "
+set index_format="%4C %Z  %d  %-19.19a  %s"
+set menu_scroll
+set message_cachedir = ~/.mutt/cache/bodies
+set move=no
+set pager_context=1
+set pager_format="-%S- %C/%m: %-20.20n   %s"
+set pager_index_lines=5
+set pager_stop
+set pgp_replyencrypt
+set pgp_replysign
+set pgp_replysignencrypted
+set reply_to=ask-yes
+set reverse_alias
+set reverse_name
+set signature="~/.signature"
+set status_format="[Msgs:%m New:%n Del:%d]                                      [%f]%> [%s] [%P]"
+set use_from
+unset confirmcreate
+unset mark_old
+unset sig_dashes
+unset suspend
+unset wait_key

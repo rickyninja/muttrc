@@ -1,0 +1,34 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use YAML qw(LoadFile);
+use Term::ReadKey;
+
+# Load accounts from config file, so my email isn't in script.
+my $conf = LoadFile("$ENV{HOME}/yaml/mutt-accounts.yaml");
+my @accounts = @{$conf->{accounts}};
+
+for (my $i = 0; $i <= $#accounts; $i++) {
+    printf(STDERR "% 2d %s\n", $i, $accounts[$i]);
+}
+
+print STDERR "\nPress the number for the account you want: ";
+
+open my $tty, '/dev/tty' or die "failed to open tty: $!";
+ReadMode("raw");
+my $i = ReadKey(0, $tty);
+print STDERR "\n";
+ReadMode("normal");
+printf('set folder = imaps://%s@imap.gmail.com:993'."\n", $accounts[$i]);
+
+__END__
+
+=head1 Purpose
+
+This script is used via a mutt macro to select accounts from a dialog.
+Press a single digit to select the corresponding account.
+
+=head1 Author
+
+Jeremy Singletary

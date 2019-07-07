@@ -1,0 +1,15 @@
+# imitate the old search-body function
+macro index \eb '/~b '
+
+# simluate the old url menu
+macro index \cb |urlview\n
+macro pager \cb |urlview\n
+
+# force change-folder to realize changing of accounts
+macro index c "<change-folder>?<change-dir><home>^K=<enter>"
+# call an external script to switch accounts
+macro index,pager A "<sync-mailbox>\
+<enter-command>unset folder<enter>\
+<enter-command>source ~/.mutt/bin/mutt-account-select|<enter>\
+<change-folder>!<enter>\
+"

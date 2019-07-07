@@ -1,0 +1,5 @@
+folder-hook $my_rickyninja_email source ~/.mutt/accounts/rickyninja
+account-hook imaps://$my_rickyninja_email source ~/.mutt/accounts/rickyninja
+
+folder-hook $my_gmail_email source ~/.mutt/accounts/gmail
+account-hook imaps://$my_gmail_email source ~/.mutt/accounts/gmail
