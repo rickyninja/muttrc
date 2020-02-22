@@ -1,4 +1,7 @@
 set realname = "Jeremy Singletary"
 set spoolfile = "+INBOX"
 set postponed = "+[GMAIL]/Drafts"
-set record = "imaps://imap.gmail.com/+[GMAIL]/Sent Mail"
+# record should be empty when using gmail smtp server to send mail;
+# otherwise you will have duplicate sent mails.
+#set record = "imaps://imap.gmail.com/+[GMAIL]/Sent Mail"
+set record = ""
