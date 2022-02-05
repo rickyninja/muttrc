@@ -17,7 +17,8 @@ set forward_format="Fw: %s"
 set header_cache= ~/.mutt/cache/headers
 set include=yes
 set indent_string="> "
-set index_format="%4C %Z  %d  %-19.19a  %s"
+folder-hook . 'set index_format="%4C %Z  %d  %-19.19a  %s"'
+folder-hook "Sent Mail" 'set index_format="%4C %Z  %d  %r  %s"'
 set menu_scroll
 set message_cachedir = ~/.mutt/cache/bodies
 set move=no
