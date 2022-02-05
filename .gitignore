@@ -3,4 +3,5 @@
 aliases
 cache
 credentials
-credentials.gpg
+secrets.yaml
+*.gpg

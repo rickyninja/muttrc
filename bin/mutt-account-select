@@ -2,11 +2,12 @@
 
 use strict;
 use warnings;
-use YAML qw(LoadFile);
+use YAML qw(Load);
 use Term::ReadKey;
 
 # Load accounts from config file, so my email isn't in script.
-my $conf = LoadFile("$ENV{HOME}/yaml/mutt-accounts.yaml");
+my $yaml = `gpg -d $ENV{HOME}/.mutt/secrets.yaml.gpg 2>/dev/null`;
+my $conf = Load($yaml);
 my @accounts = @{$conf->{accounts}};
 
 for (my $i = 0; $i <= $#accounts; $i++) {

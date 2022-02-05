@@ -1,6 +1,6 @@
 source "gpg -d ~/.mutt/credentials.gpg |"
 source ~/.mutt/account-hooks
-source ~/.mutt/accounts/rickyninja # default account
+source ~/.mutt/accounts/gmail # default account
 source ~/.mutt/aliases
 source ~/.mutt/autoview
 source ~/.mutt/binds
