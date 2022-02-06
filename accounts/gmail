@@ -1,4 +1,4 @@
-set from = $my_gmail_email
+set from = $my_rickyninja_email # I only have one account now, but using an alias
 set imap_user = $my_gmail_email
 set imap_pass = $my_gmail_pass
 set smtp_url = "smtp://$my_gmail_email@smtp.gmail.com:587/"
