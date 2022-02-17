@@ -46,14 +46,14 @@ import yaml
 path = Path(os.path.expanduser('~/.mutt/secrets.yaml.gpg'))
 sub = subprocess.run(['gpg', '--decrypt'], check=True, input=path.read_bytes(),
                         capture_output=True)
-secrets = yaml.safe_load(sub.stdout)
+ysecrets = yaml.safe_load(sub.stdout)
 
 # The token file must be encrypted because it contains multi-use bearer tokens
 # whose usage does not require additional verification. Specify whichever
 # encryption and decryption pipes you prefer. They should read from standard
 # input and write to standard output. The example values here invoke GPG,
 # although won't work until an appropriate identity appears in the first line.
-ENCRYPTION_PIPE = ['gpg', '--encrypt', '--recipient', secrets['gpg-identity']]
+ENCRYPTION_PIPE = ['gpg', '--encrypt', '--recipient', ysecrets['gpg-identity']]
 DECRYPTION_PIPE = ['gpg', '--decrypt']
 
 registrations = {
@@ -67,8 +67,8 @@ registrations = {
         'smtp_endpoint': 'smtp.gmail.com',
         'sasl_method': 'OAUTHBEARER',
         'scope': 'https://mail.google.com/',
-        'client_id': secrets['client-id'],
-        'client_secret': secrets['secret'],
+        'client_id': ysecrets['client-id'],
+        'client_secret': ysecrets['secret'],
     },
     'microsoft': {
         'authorize_endpoint': 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
